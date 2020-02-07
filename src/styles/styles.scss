@@ -1,0 +1,16 @@
+.container-wrap {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grid-container {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(13, auto);
+    grid-gap: 10px;
+    .cards {
+        
+    }
+}
+
