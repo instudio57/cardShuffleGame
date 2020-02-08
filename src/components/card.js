@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 const Card = (props) => {
-    const [isFlipped, setIsFlipped] = useState(false);
-
-    const onClickHandle = () => {
-        setIsFlipped(!isFlipped);
-    }
-    
     return (
-        <div>
+        <Fragment>
             <div 
-                className={"card-container" + (isFlipped ? " flipped" : "")}
-                onClick={onClickHandle}>
+                className={"card-container view overlay" + (props.isFlipped ? " flipped" : "")}
+                onClick={() => props.flipHandle(props.cardId)}>
                 <img
                     src="images/cards/blue_back.jpg"
                     className="img-fluid card-space"
@@ -29,8 +23,11 @@ const Card = (props) => {
                         className="img-fluid"
                     />
                 </div>
+                <div className="mask flex-center waves-effect waves-light rgba-pink-strong">
+                    <p className="white-text">Draw</p>
+                </div>
             </div>
-        </div>
+        </Fragment>
     )
 }
 
