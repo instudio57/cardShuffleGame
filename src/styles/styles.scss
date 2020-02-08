@@ -28,11 +28,13 @@
     grid-template-columns: repeat(13, auto);
     grid-gap: 10px;
     .card-container {
+        left: 0px;
+        right: 0px;
+        width: 58px;
+        height: 88px;
         cursor: pointer;
         position: relative;
-        .card-space {
-            visibility: hidden;
-        }
+        transition: all 0.1s linear;
         &.flipped {
             .front {
                 transform: rotateY(0deg);

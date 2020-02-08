@@ -1,30 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import Cards from './components/card';
+import { MDBBtn } from 'mdbreact';
+import Card from './components/card';
 import cardData from './components/cardData';
-import { MDBBtn, MDBIcon } from "mdbreact";
+import Shuffle from './components/shuffle';
 
 // Styles
 import './styles/styles.scss';
-import Card from './components/card';
 
 function App() {
 
     const initialCards = cardData.cardData;
     const [cards, setCards] = useState(cardData.cardData);
+    const [animate, setAnimate] = useState(false);
+    // const [buffer, setBuffer] = useState([]);
+    let style = {
+        transform: `translateY(0px)`,
+        transition: 'all 2s ease',
+    }
 
+    // Flip the card on click
     const flipHandle = (id) => {
         let newCards = [...cards];
         newCards[id].flipped = !newCards[id].flipped;
         setCards(newCards);
     }
 
-    const shuffleHandle = () => {
-        const shuffled = shuffle(cards);
+    // Shuffle the card on click
+    const shuffleHandle = (e) => {
+        setAnimate(true);
+        let resetFlip = cards;
+        resetFlip = resetFlip.map(card => {
+            var temp = Object.assign({}, card);
+            temp.flipped = false;
+            return temp;
+        });
+
+        const shuffled = Shuffle(resetFlip);
         setCards(shuffled);
     }
 
-    useEffect(() => {
+    
 
+    useEffect(() => {
     }, []);
 
     return (
@@ -43,6 +60,7 @@ function App() {
                                     cardImageUrl={card.imageUrl}
                                     flipHandle={(id) => flipHandle(id)}
                                     isFlipped={card.flipped}
+                                    animate={animate}
                                 />
                             )
                         })}
@@ -56,26 +74,6 @@ function App() {
             </div>
         </div>
     );
-}
-
-function shuffle(array) {
-    var shuffled = [...array];
-    var currentIndex = shuffled.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = shuffled[currentIndex];
-        shuffled[currentIndex] = shuffled[randomIndex];
-        shuffled[randomIndex] = temporaryValue;
-    }
-
-    return shuffled;
 }
 
 export default App;

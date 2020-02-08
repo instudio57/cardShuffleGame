@@ -1,15 +1,13 @@
 import React, { useState, Fragment } from 'react';
 
 const Card = (props) => {
+
     return (
         <Fragment>
             <div 
-                className={"card-container view overlay" + (props.isFlipped ? " flipped" : "")}
-                onClick={() => props.flipHandle(props.cardId)}>
-                <img
-                    src="images/cards/blue_back.jpg"
-                    className="img-fluid card-space"
-                />
+                className={"card-container view overlay" + (props.isFlipped ? " flipped" : "") + (props.animate ? " cardAnimate" : "")}
+                onClick={() => props.flipHandle(props.cardId)}
+            >
                 <div className="back">
                     <img
                         src="images/cards/blue_back.jpg"
