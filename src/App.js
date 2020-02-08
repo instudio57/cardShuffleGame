@@ -12,9 +12,9 @@ function App() {
 
     return (
         <div className="App">
-            <div className="container-wrap flex-center h-100">
+            <div className="container-wrap">
                 <div className="container-fluid">
-                    <h1 className="text-center my-5">Card Shuffle Game</h1>
+                    <h1 className="text-center my-5 text-white">Card Shuffle Game</h1>
                     <div className="row justify-content-center">
                         <div className="col-9">
                             <div className="grid-container">
@@ -25,6 +25,7 @@ function App() {
                                             cardName={card.name}
                                             cardColor={card.color}
                                             cardImageUrl={card.imageUrl}
+                                            
                                         />
                                     )
                                 })}

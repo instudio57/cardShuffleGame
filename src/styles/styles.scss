@@ -1,16 +1,54 @@
 .container-wrap {
-    height: 100vh;
+    height: 100vh !important;
     display: flex;
     justify-content: center;
-    align-items: center;
+    background-image: url(/images/table-background.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    h1 {
+        font-weight: bold;
+        font-size: 46px;
+    }
 }
 .grid-container {
     width: 80%;
     display: grid;
     grid-template-columns: repeat(13, auto);
+
     grid-gap: 10px;
-    .cards {
-        
+    .card-container {
+        cursor: pointer;
+        position: relative;
+        .card-space {
+            visibility: hidden;
+        }
+        &.flipped {
+            .front {
+                transform: rotateY(0deg);
+            }
+            .back {
+                transform: rotateY(180deg);
+            }
+        }
+        .front,
+        .back {
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            transition: -webkit-transform ease 500ms;
+            transition: transform ease 500ms;
+        }
+        .front {
+            transform: rotateY(-180deg);
+        }
+        .back {
+            z-index: 2;
+            transform: rotateY(0deg);
+        }
     }
 }
 

@@ -1,24 +1,35 @@
-import React from 'react';
-import { MDBCard } from "mdbreact";
+import React, { useState } from 'react';
 
 const Card = (props) => {
+    const [isFlipped, setIsFlipped] = useState(false);
+
+    const onClickHandle = () => {
+        setIsFlipped(!isFlipped);
+    }
+    
     return (
-        // <div className="cards">
-        //     <img
-        //         src={props.cardImageUrl}
-        //         className="img-fluid"
-        //     />
-        // </div>
-        <div className="cards">
-            <MDBCard className="back">
+        <div>
+            <div 
+                className={"card-container" + (isFlipped ? " flipped" : "")}
+                onClick={onClickHandle}>
                 <img
                     src="images/cards/blue_back.jpg"
-                    className="img-fluid"
+                    className="img-fluid card-space"
                 />
-            </MDBCard>
-            <MDBCard className="front d-none">
-                Front
-            </MDBCard>
+                <div className="back">
+                    <img
+                        src="images/cards/blue_back.jpg"
+                        className="img-fluid"
+                    />
+                    <p></p>
+                </div>
+                <div className="front">
+                    <img
+                        src={props.cardImageUrl}
+                        className="img-fluid"
+                    />
+                </div>
+            </div>
         </div>
     )
 }
